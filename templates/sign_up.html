@@ -1,0 +1,22 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+
+    <h2>Formulario de Registro</h2>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form }}
+
+        <input type="submit" value="Sign Up">
+    </form>
+
+    {% if users %}
+        <p>{{ users }}</p>
+    {% endif %}
+
+{% endblock %}

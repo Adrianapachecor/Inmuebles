@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg fixed-top" style="background: linear-gradient(to right, #FFA500, #FF6347); font-family: 'Nunito Sans', sans-serif; font-size: 16px;">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="btn btn-warning text-white me-2" href="/" type="button">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-warning text-white me-2" href="/inmuebles" type="button">Inmuebles</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item" style="margin-left: 0;">
+                        <a class="btn btn-warning text-white me-2" href="/logout" type="button">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item" style="margin-left: 0;">
+                        <a class="btn btn-warning text-white me-2" href="/sign_up" type="button">Signup</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 0;">
+                        <a class="btn btn-warning text-white me-2" href="/login" type="button">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <!-- Botón de búsqueda -->
+            <form class="d-flex ms-auto" role="search" onsubmit="return false;">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-warning text-white" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Prevenir el envío del formulario de búsqueda
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        console.log('Search action prevented');
+    });
+</script>

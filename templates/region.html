@@ -1,0 +1,20 @@
+<h1>Regiones</h1>
+<ul>
+    {% for region in regiones %}
+        <li>{{ region.nombre }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Comunas de la Región Metropolitana</h2>
+<ul>
+    {% for comuna in comunas %}
+        <li>{{ comuna.nombre }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Comunas Ordenadas Alfabéticamente</h2>
+<ul>
+    {% for comuna in comunas_ordenadas %}
+        <li>{{ comuna.nombre }}</li>
+    {% endfor %}
+</ul>

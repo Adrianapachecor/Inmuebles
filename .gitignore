@@ -1,0 +1,9 @@
+# Archivos de Python que deben ser ignorados
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+env/
+venv/
+*.sqlite3
+*.log

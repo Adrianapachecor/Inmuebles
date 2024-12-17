@@ -1,0 +1,60 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'layout/navbar.html' %}
+<h1>Inmuebles</h1>
+<p>{{ profile }}</p>
+
+<!-- Carrusel con tarjetas de inmuebles -->
+<div id="carouselInmuebles" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {% for inmueble in inmuebles %}
+      {% if forloop.counter0|divisibleby:4 %}
+        <!-- Inicia un nuevo conjunto de tarjetas cada 4 inmuebles -->
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <div class="row">
+      {% endif %}
+
+      <div class="col-3">
+        <div class="card" style="width: 18rem;">
+          <!-- Muestra la imagen del inmueble si tiene una, si no, usa una imagen predeterminada -->
+          {% if inmueble.imagen %}
+            <img src="{{ inmueble.imagen.url }}" class="card-img-top" alt="{{ inmueble.nombre_inmueble }}">
+          {% else %}
+            <img src="{% static 'img/rauli-parque-oriente-9.jpg' %}" class="card-img-top" alt="{{ inmueble.nombre_inmueble }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ inmueble.nombre_inmueble }}</h5>
+            <p class="card-text">{{ inmueble.descripcion }}</p>
+            <a href="#" class="btn btn-primary">Ver más</a>
+          </div>
+        </div>
+      </div>
+
+      {% if forloop.counter|divisibleby:4 or forloop.last %}
+        <!-- Cierra la fila de 4 tarjetas -->
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Controles del carrusel -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselInmuebles" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselInmuebles" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<p>
+    {% if profile.id_tipo_user.codigo_tipo_usuario == 1 %}
+        <a href="/crear_inmueble/" class="btn btn-success">Ir a crear inmueble</a>
+    {% endif %}
+</p>
+
+{% endblock %}
